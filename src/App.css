@@ -204,3 +204,7 @@ textarea {
 .wrong {
   background-color: lightcoral;
 }
+
+.answered {
+  background-color: lightcyan;
+}

@@ -81,12 +81,31 @@ const App = () => {
         </div>
       ) : (
         <div>
-          {questions.length > 0 && <textarea ref={textareaEl} />}
+          {questions.length > 0 && (
+            <textarea
+              ref={textareaEl}
+              onChange={(e) => {
+                const answers = e.target.value
+                  .split(" ")
+                  .filter((a) => a)
+                  .map((a) => parseInt(a));
+
+                for (let i = 0; i < questions.length; i++) {
+                  const el = document.getElementsByClassName(i);
+                  if (answers.length > i) {
+                    el[0]?.classList.add("answered");
+                  } else {
+                    el[0]?.classList.remove("answered");
+                  }
+                }
+              }}
+            />
+          )}
           <div className="questions">
             {questions.length > 0 &&
               questions.map((q, i) => {
                 return (
-                  <span key={i}>
+                  <span key={i} className={i}>
                     Q-{i + 1}
                     <br />
                     <br />
