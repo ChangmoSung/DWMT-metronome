@@ -46,8 +46,8 @@ const App = () => {
 
       const answersFromUser = textareaEl.current.value
         .split(" ")
-        .filter((a) => a)
-        .map((a) => parseInt(a));
+        .map((a) => parseInt(a.replace(/\D/g, "")))
+        .filter((a) => !isNaN(a));
       setUserAnswers(answersFromUser);
       setCounts(counts);
     }, secondsToPlay);
@@ -87,8 +87,8 @@ const App = () => {
               onChange={(e) => {
                 const answers = e.target.value
                   .split(" ")
-                  .filter((a) => a)
-                  .map((a) => parseInt(a));
+                  .map((a) => parseInt(a.replace(/\D/g, "")))
+                  .filter((a) => !isNaN(a));
 
                 for (let i = 0; i < questions.length; i++) {
                   const el = document.getElementsByClassName(i);
