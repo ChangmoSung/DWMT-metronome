@@ -175,6 +175,15 @@ input::-moz-focus-inner {
   overflow: hidden;
 }
 
+.startButton {
+  margin-bottom: 1rem;
+}
+
+.answersBoard {
+  display: flex;
+  flex-direction: column;
+}
+
 .questions,
 .answers {
   display: flex;

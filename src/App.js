@@ -5,11 +5,13 @@ import sound from "./sounds/metronome.m4a";
 const App = () => {
   const audioEl = useRef(null);
   const textareaEl = useRef(null);
+  const inputEl = useRef(null);
 
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [countsToShow, setCounts] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
+  const [metronomeNumber, setMetronomeNumber] = useState(0);
 
   const getQuestionsAndAnswers = () => {
     const questionsToShow = [];
@@ -55,7 +57,9 @@ const App = () => {
 
   return (
     <div>
-      <button onClick={onClick}>Start</button>
+      <button className="startButton" onClick={onClick}>
+        Start
+      </button>
 
       <audio ref={audioEl}>
         <source src={sound}></source>
@@ -63,21 +67,44 @@ const App = () => {
 
       {userAnswers.length > 0 ? (
         <div>
-          <span>Counts: {countsToShow}</span>
-          <div className="answers">
-            {answers.length > 0 &&
-              answers.map((a, i) => {
-                return (
-                  <span
-                    key={i}
-                    className={userAnswers[i] === a ? "correct" : "wrong"}
-                  >
-                    Your answer: {userAnswers[i]} <br />
-                    <br /> The answer: {a}
-                  </span>
-                );
-              })}
-          </div>
+          {metronomeNumber > 0 ? (
+            <div className="answersBoard">
+              <span>
+                Counts: {countsToShow}
+                <br />
+                <br />
+                Metronome number: {metronomeNumber}
+                <br />
+                <br />
+              </span>
+              <div className="answers">
+                {answers.length > 0 &&
+                  answers.map((a, i) => {
+                    return (
+                      <span
+                        key={i}
+                        className={userAnswers[i] === a ? "correct" : "wrong"}
+                      >
+                        Your answer: {userAnswers[i]} <br />
+                        <br /> The answer: {a}
+                      </span>
+                    );
+                  })}
+              </div>
+            </div>
+          ) : (
+            <form
+              onSubmit={() => {
+                setMetronomeNumber(inputEl.current.value);
+              }}
+            >
+              <input
+                type="text"
+                ref={inputEl}
+                placeholder="Enter the number of metronome you counted"
+              />
+            </form>
+          )}
         </div>
       ) : (
         <div>
