@@ -179,22 +179,10 @@ input::-moz-focus-inner {
   margin-bottom: 1rem;
 }
 
-.answersBoard {
-  display: flex;
-  flex-direction: column;
-}
-
 .questions,
 .answers {
   display: flex;
   flex-wrap: wrap;
-}
-
-textarea {
-  width: 50%;
-  display: block;
-  margin: 0 auto;
-  min-height: 5rem;
 }
 
 .questions span,
@@ -204,16 +192,4 @@ textarea {
   border: 1px solid black;
   display: flex;
   justify-content: center;
-}
-
-.correct {
-  background-color: greenyellow;
-}
-
-.wrong {
-  background-color: lightcoral;
-}
-
-.answered {
-  background-color: lightcyan;
 }

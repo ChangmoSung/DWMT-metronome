@@ -1,4 +1,10 @@
-.questions {
-  display: flex;
-  flex-direction: column;
+textarea {
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  min-height: 5rem;
+}
+
+.answered {
+  background-color: lightcyan;
 }

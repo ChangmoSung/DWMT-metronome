@@ -1,0 +1,12 @@
+.answersBoard {
+  display: flex;
+  flex-direction: column;
+}
+
+.correct {
+  background-color: greenyellow;
+}
+
+.wrong {
+  background-color: lightcoral;
+}
