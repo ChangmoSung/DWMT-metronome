@@ -12,6 +12,7 @@ const App = () => {
   const [countsToShow, setCounts] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
   const [metronomeNumber, setMetronomeNumber] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
   const getQuestionsAndAnswers = () => {
     const questionsToShow = [];
@@ -33,7 +34,6 @@ const App = () => {
   const onClick = () => {
     const { questionsToShow, answersToShow } = getQuestionsAndAnswers();
     setQuestions(questionsToShow);
-    setAnswers(answersToShow);
 
     let counts = 0;
     const intervalSpeed = Math.floor(Math.random() * (6 - 4) + 4) * 100;
@@ -45,13 +45,9 @@ const App = () => {
     const secondsToPlay = questionsToShow.length * 1250;
     setTimeout(() => {
       clearInterval(intervalId);
-
-      const answersFromUser = textareaEl.current.value
-        .split(" ")
-        .map((a) => parseInt(a.replace(/\D/g, "")))
-        .filter((a) => !isNaN(a));
-      setUserAnswers(answersFromUser);
       setCounts(counts);
+      setAnswers(answersToShow);
+      setGameOver(true);
     }, secondsToPlay);
   };
 
@@ -65,7 +61,7 @@ const App = () => {
         <source src={sound}></source>
       </audio>
 
-      {userAnswers.length > 0 ? (
+      {gameOver ? (
         <div>
           {metronomeNumber > 0 ? (
             <div className="answersBoard">
@@ -76,6 +72,9 @@ const App = () => {
                 Metronome number: {metronomeNumber}
                 <br />
                 <br />
+                {countsToShow == metronomeNumber
+                  ? `You're a genius!`
+                  : `Not bad`}
               </span>
               <div className="answers">
                 {answers.length > 0 &&
@@ -117,6 +116,8 @@ const App = () => {
                   .map((a) => parseInt(a.replace(/\D/g, "")))
                   .filter((a) => !isNaN(a));
 
+                setUserAnswers(answers);
+
                 for (let i = 0; i < questions.length; i++) {
                   const el = document.getElementsByClassName(i);
                   if (answers.length > i) {
@@ -137,6 +138,9 @@ const App = () => {
                     <br />
                     <br />
                     {q}
+                    <br />
+                    <br />
+                    {userAnswers[i] && `Your answer: ${userAnswers[i]}`}
                   </span>
                 );
               })}
