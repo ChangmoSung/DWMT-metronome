@@ -60,6 +60,15 @@ const App = () => {
         <source src={sound}></source>
       </audio>
 
+      {questions.length <= 0 && !gameOver && (
+        <select onChange={(e) => setLevel(e.target.value)}>
+          <option value="">Select a level</option>
+          <option value="easy">Easy</option>
+          <option value="normal">Normal</option>
+          <option value="hard">Hard</option>
+        </select>
+      )}
+
       <button
         className="startOrReplayButton"
         onClick={
@@ -78,15 +87,6 @@ const App = () => {
       >
         {questions.length ? "Replay" : "Start"}
       </button>
-
-      {questions.length <= 0 && !gameOver && (
-        <select onChange={(e) => setLevel(e.target.value)}>
-          <option value="">Select a level</option>
-          <option value="easy">Easy</option>
-          <option value="normal">Normal</option>
-          <option value="hard">Hard</option>
-        </select>
-      )}
 
       {gameOver ? (
         <Result
