@@ -25,19 +25,20 @@ const App = () => {
     setQuestions(questionsToShow);
 
     let counts = 0;
-    const intervalSpeed = Math.floor(Math.random() * (6 - 4) + 4) * 100;
+    const intervalSpeed = Math.floor(Math.random() * (6 - 3) + 3) * 100;
     const iId = setInterval(() => {
       audioEl.current.play();
       counts = counts + 1;
     }, intervalSpeed);
     setIntervalId(iId);
 
-    const secondsToPlay = questionsToShow.length * 1250;
+    const secondsToPlay = questionsToShow.length * 1150;
     const tId = setTimeout(() => {
       clearInterval(iId);
       setCounts(counts);
       setAnswers(answersToShow);
       setGameOver(true);
+      document.getElementsByClassName("metronomeNumberInput")[0].focus();
     }, secondsToPlay);
     setTimeoutId(tId);
   };
@@ -49,7 +50,7 @@ const App = () => {
       </audio>
 
       <button
-        className="startOrReplay"
+        className="startOrReplayButton"
         onClick={
           questions.length
             ? () =>

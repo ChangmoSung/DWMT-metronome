@@ -179,7 +179,7 @@ input::-moz-focus-inner {
   text-align: center;
 }
 
-.startOrReplay {
+.startOrReplayButton {
   margin: 1rem 0;
   padding: 1rem;
   border-radius: 1rem;
@@ -213,7 +213,7 @@ input::-moz-focus-inner {
 }
 
 @media (max-width: 800px) {
-  .startOrReplay {
+  .startOrReplayButton {
     margin: 0.8rem 0;
     padding: 0.8rem;
     font-size: 15px;
@@ -232,7 +232,7 @@ input::-moz-focus-inner {
 }
 
 @media (max-width: 430px) {
-  .startOrReplay {
+  .startOrReplayButton {
     margin: 0.6rem 0;
     padding: 0.6rem;
     font-size: 12px;
