@@ -17,3 +17,19 @@ export const getAnswers = (questionsToShow) => {
   });
   return answersToShow;
 };
+
+export const replayGame = ({
+  setQuestions,
+  setCounts,
+  setAnswers,
+  setGameOver,
+  intervalId,
+  timeoutId,
+}) => {
+  setQuestions([]);
+  setCounts(0);
+  setAnswers([]);
+  setGameOver(false);
+  clearInterval(intervalId);
+  clearTimeout(timeoutId);
+};

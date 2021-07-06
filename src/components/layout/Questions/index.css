@@ -1,5 +1,5 @@
 textarea {
-  width: 50%;
+  width: 90%;
   display: block;
   margin: 0 auto;
   min-height: 5rem;
@@ -7,4 +7,9 @@ textarea {
 
 .answered {
   background-color: lightcyan;
+}
+
+.questions {
+  margin: 0 auto;
+  width: 90%;
 }

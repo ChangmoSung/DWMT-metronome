@@ -22,13 +22,15 @@ const Result = ({ countsToShow, answers, userAnswers }) => {
             {answers.length > 0 &&
               answers.map((a, i) => {
                 return (
-                  <span
+                  <div
                     key={i}
-                    className={userAnswers[i] === a ? "correct" : "wrong"}
+                    className={`${
+                      userAnswers[i] === a ? "correct" : "wrong"
+                    } answer`}
                   >
-                    Your answer: {userAnswers[i]} <br />
-                    <br /> The answer: {a}
-                  </span>
+                    <span>Yours: {userAnswers[i]}</span>
+                    <span>Answer: {a}</span>
+                  </div>
                 );
               })}
           </div>
@@ -42,6 +44,7 @@ const Result = ({ countsToShow, answers, userAnswers }) => {
           <input
             type="text"
             ref={inputEl}
+            className="metronomeNumberInput"
             placeholder="Enter the number of metronome you counted"
           />
         </form>

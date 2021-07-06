@@ -4,9 +4,15 @@
 }
 
 .correct {
-  background-color: greenyellow;
+  background-color: lightseagreen;
 }
 
 .wrong {
   background-color: lightcoral;
+}
+
+.metronomeNumberInput {
+  width: 50%;
+  padding: 1rem;
+  border-radius: 1rem;
 }

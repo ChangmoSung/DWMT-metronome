@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "./index.css";
 
 const Questions = ({ questions, userAnswers, setUserAnswers }) => {
   return (
-    <div>
+    <Fragment>
       {questions.length > 0 && (
         <textarea
           onChange={(e) => {
@@ -29,20 +29,17 @@ const Questions = ({ questions, userAnswers, setUserAnswers }) => {
         {questions.length > 0 &&
           questions.map((q, i) => {
             return (
-              <span key={i} className={i}>
-                Q-{i + 1}
-                <br />
-                <br />
-                {q}
-                <br />
-                <br />
-                {typeof userAnswers[i] === "number" &&
-                  `Your answer: ${userAnswers[i]}`}
-              </span>
+              <div className={`${i} question`} key={i}>
+                <span>Q-{i + 1}</span>
+                <span>{q}</span>
+                <span>
+                  {typeof userAnswers[i] === "number" && `*${userAnswers[i]}`}
+                </span>
+              </div>
             );
           })}
       </div>
-    </div>
+    </Fragment>
   );
 };
 
