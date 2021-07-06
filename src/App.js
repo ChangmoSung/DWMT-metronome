@@ -14,6 +14,7 @@ const App = () => {
   const [gameOver, setGameOver] = useState(false);
   const [intervalId, setIntervalId] = useState(false);
   const [timeoutId, setTimeoutId] = useState(false);
+  const [level, setLevel] = useState("");
 
   useEffect(() => {
     document?.getElementsByTagName("textarea")[0]?.focus();
@@ -32,13 +33,23 @@ const App = () => {
     }, intervalSpeed);
     setIntervalId(iId);
 
-    const secondsToPlay = questionsToShow.length * 1150;
+    let time;
+    if (level === "hard") {
+      time = 1150;
+    } else if (level === "normal") {
+      time = 1250;
+    } else if (level === "easy") {
+      time = 1350;
+    } else {
+      time = 1150;
+    }
+    const secondsToPlay = questionsToShow.length * time;
     const tId = setTimeout(() => {
       clearInterval(iId);
       setCounts(counts);
       setAnswers(answersToShow);
       setGameOver(true);
-      document.getElementsByClassName("metronomeNumberInput")[0].focus();
+      document?.getElementsByClassName("metronomeNumberInput")[0]?.focus();
     }, secondsToPlay);
     setTimeoutId(tId);
   };
@@ -67,6 +78,15 @@ const App = () => {
       >
         {questions.length ? "Replay" : "Start"}
       </button>
+
+      {questions.length <= 0 && !gameOver && (
+        <select onChange={(e) => setLevel(e.target.value)}>
+          <option value="">Select a level</option>
+          <option value="easy">Easy</option>
+          <option value="normal">Normal</option>
+          <option value="hard">Hard</option>
+        </select>
+      )}
 
       {gameOver ? (
         <Result
