@@ -31,14 +31,18 @@ export const replayGame = ({
   setQuestions,
   setCounts,
   setAnswers,
+  setUserAnswers,
   setGameOver,
+  setLevel,
   intervalId,
   timeoutId,
 }) => {
   setQuestions([]);
   setCounts(0);
   setAnswers([]);
+  setUserAnswers([]);
   setGameOver(false);
+  setLevel("");
   clearInterval(intervalId);
   clearTimeout(timeoutId);
 };
