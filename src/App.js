@@ -42,10 +42,13 @@ const App = () => {
     const secondsToPlay = questionsToShow.length * time;
     const tId = setTimeout(() => {
       clearInterval(iId);
-      setCounts(counts);
-      setAnswers(answersToShow);
-      setGameOver(true);
-      document?.getElementsByClassName("metronomeNumberInput")[0]?.focus();
+
+      setTimeout(() => {
+        setCounts(counts);
+        setAnswers(answersToShow);
+        setGameOver(true);
+        document?.getElementsByClassName("metronomeNumberInput")[0]?.focus();
+      }, 1500);
     }, secondsToPlay);
     setTimeoutId(tId);
   };
