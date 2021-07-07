@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef, useEffect } from "react";
+import React, { Fragment, useState, useRef } from "react";
 import "./App.css";
 import Result from "./components/layout/Result";
 import Questions from "./components/layout/Questions";
@@ -15,10 +15,6 @@ const App = () => {
   const [level, setLevel] = useState("");
   const [intervalId, setIntervalId] = useState(false);
   const [timeoutId, setTimeoutId] = useState(false);
-
-  useEffect(() => {
-    document?.getElementsByTagName("textarea")[0]?.focus();
-  });
 
   const startGame = () => {
     const questionsToShow = getQuestions();

@@ -1,15 +1,14 @@
-textarea {
-  width: 90%;
-  display: block;
-  margin: 0 auto;
-  min-height: 5rem;
-}
-
 .answered {
   background-color: lightcyan;
 }
 
 .questions {
-  margin: 0 auto;
+  margin: 1rem auto;
   width: 90%;
+}
+
+.userAnswer {
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 25rem;
 }

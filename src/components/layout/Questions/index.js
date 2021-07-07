@@ -1,29 +1,65 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useRef, useEffect } from "react";
 import "./index.css";
 
 const Questions = ({ questions, userAnswers, setUserAnswers }) => {
+  const userAnswerEl = useRef(null);
+
+  useEffect(() => {
+    userAnswerEl?.current?.focus();
+  });
+
   return (
     <Fragment>
       {questions.length > 0 && (
-        <textarea
-          onChange={(e) => {
-            const answers = e.target.value
-              .split(" ")
-              .map((a) => parseInt(a.replace(/\D/g, "")))
-              .filter((a) => !isNaN(a));
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const userAnswer = userAnswerEl.current.value;
 
-            setUserAnswers(answers);
+            setUserAnswers([
+              ...userAnswers,
+              parseInt(userAnswer.replace(/\D/g, "")),
+            ]);
 
             for (let i = 0; i < questions.length; i++) {
               const el = document.getElementsByClassName(i);
-              if (answers.length > i) {
+              if (userAnswers.length >= i) {
                 el[0]?.classList.add("answered");
               } else {
                 el[0]?.classList.remove("answered");
               }
             }
+
+            userAnswerEl.current.value = "";
           }}
-        />
+        >
+          <input
+            ref={userAnswerEl}
+            type="text"
+            className="userAnswer"
+            placeholder="Enter answer"
+            onKeyDown={(e) => {
+              const key = e.key;
+              const value = e.target.value;
+              if (key === "Backspace" && !value) {
+                const slicedAnswers = userAnswers.slice(
+                  0,
+                  userAnswers.length - 1
+                );
+                setUserAnswers(slicedAnswers);
+
+                for (let i = 0; i < questions.length; i++) {
+                  const el = document.getElementsByClassName(i);
+                  if (slicedAnswers.length > i) {
+                    el[0]?.classList.add("answered");
+                  } else {
+                    el[0]?.classList.remove("answered");
+                  }
+                }
+              }
+            }}
+          />
+        </form>
       )}
       <div className="questions">
         {questions.length > 0 &&
