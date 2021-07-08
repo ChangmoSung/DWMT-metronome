@@ -37,8 +37,18 @@ const Result = ({ countsToShow, answers, userAnswers }) => {
         </Fragment>
       ) : (
         <form
-          onSubmit={() => {
-            setMetronomeNumber(inputEl.current.value);
+          onSubmit={(e) => {
+            e.preventDefault();
+            const metronomeNumber = inputEl.current.value;
+            if (metronomeNumber > 0) {
+              setMetronomeNumber(metronomeNumber);
+            } else {
+              if (metronomeNumber == 0) {
+                window.alert("I believe your answer must be bigger than 0 LOL");
+              } else {
+                window.alert("Enter the number of the metronome");
+              }
+            }
           }}
         >
           <input

@@ -47,8 +47,7 @@ const App = () => {
         setCounts(counts);
         setAnswers(answersToShow);
         setGameOver(true);
-        document?.getElementsByClassName("metronomeNumberInput")[0]?.focus();
-      }, 1500);
+      }, 1000);
     }, secondsToPlay);
     setTimeoutId(tId);
   };
