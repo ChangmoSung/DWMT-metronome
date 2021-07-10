@@ -4,15 +4,17 @@ export const getQuestions = (level) => {
   for (let i = 0; i < numOfQuestions; i++) {
     const num1 = Math.floor(Math.random() * (20 - 1) + 1);
     const num2 = Math.floor(Math.random() * (20 - 1) + 1);
+    const biggerNum = Math.max(num1, num2);
+    const smallerNum = Math.min(num1, num2);
     const chance = Math.random();
     let question = "";
     if (level === "hard") {
       if (chance < 0.25) {
         question = `${num1} + ${num2}`;
       } else if (chance < 0.5) {
-        question = `${Math.max(num1, num2)} - ${Math.min(num1, num2)}`;
+        question = `${biggerNum} - ${smallerNum}`;
       } else if (chance < 0.75) {
-        question = `${Math.max(num1, num2)} / ${Math.min(num1, num2)}`;
+        question = `${biggerNum} / ${smallerNum}`;
       } else if (chance < 1) {
         question = `${num1} * ${num2}`;
       } else {
@@ -22,9 +24,9 @@ export const getQuestions = (level) => {
       if (chance < 0.5) {
         question = `${num1} + ${num2}`;
       } else if (chance < 1) {
-        question = `${Math.max(num1, num2)} - ${Math.min(num1, num2)}`;
+        question = `${biggerNum} - ${smallerNum}`;
       } else {
-        question = `${Math.max(num1, num2)} - ${Math.min(num1, num2)}`;
+        question = `${biggerNum} - ${smallerNum}`;
       }
     }
     questionsToShow.push(question);
