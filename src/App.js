@@ -54,6 +54,13 @@ const App = () => {
         <source src={sound}></source>
       </audio>
 
+      {questions.length <= 0 && !gameOver && (
+        <p className="announcement">
+          There're multiplication and division questions on the{" "}
+          <strong>hard</strong> level :)
+        </p>
+      )}
+
       <p className="announcement">
         * For division questions, Round your answer to the nearest integer *
       </p>
