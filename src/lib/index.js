@@ -2,8 +2,8 @@ export const getQuestions = (level) => {
   const questionsToShow = [];
   const numOfQuestions = Math.floor(Math.random() * (8 - 3) + 3) * 10;
   for (let i = 0; i < numOfQuestions; i++) {
-    const num1 = Math.floor(Math.random() * (20 - 1) + 1);
-    const num2 = Math.floor(Math.random() * (20 - 1) + 1);
+    const num1 = Math.floor(Math.random() * (30 - 1) + 1);
+    const num2 = Math.floor(Math.random() * (30 - 1) + 1);
     const biggerNum = Math.max(num1, num2);
     const smallerNum = Math.min(num1, num2);
     const chance = Math.random();
@@ -95,13 +95,13 @@ export const getIntervalSpeed = (level) => {
 export const getSecondsToPlay = (level, numOfQuestions) => {
   let time;
   if (level === "hard") {
-    time = 1750;
+    time = 2500;
   } else if (level === "normal") {
-    time = 1100;
+    time = 1700;
   } else if (level === "easy") {
-    time = 1200;
+    time = 2500;
   } else {
-    time = 1750;
+    time = 2500;
   }
   const secondsToPlay = numOfQuestions * time;
   return secondsToPlay;
