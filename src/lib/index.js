@@ -93,13 +93,13 @@ export const getIntervalSpeed = (level) => {
 export const getSecondsToPlay = (level, numOfQuestions) => {
   let time;
   if (level === "hard") {
-    time = 1800;
+    time = 1900;
   } else if (level === "normal") {
     time = 1100;
   } else if (level === "easy") {
     time = 1200;
   } else {
-    time = 1800;
+    time = 1900;
   }
   const secondsToPlay = numOfQuestions * time;
   return secondsToPlay;
