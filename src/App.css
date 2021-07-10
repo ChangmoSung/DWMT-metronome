@@ -179,6 +179,10 @@ input::-moz-focus-inner {
   text-align: center;
 }
 
+.announcement {
+  margin-top: 3rem;
+}
+
 .startOrReplayButton {
   margin: 1rem 0;
   padding: 1rem;

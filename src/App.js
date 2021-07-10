@@ -3,7 +3,13 @@ import "./App.css";
 import Result from "./components/layout/Result";
 import Questions from "./components/layout/Questions";
 import sound from "./sounds/metronome.m4a";
-import { getQuestions, getAnswers, replayGame } from "./lib";
+import {
+  getQuestions,
+  getAnswers,
+  getSecondsToPlay,
+  getIntervalSpeed,
+  replayGame,
+} from "./lib";
 
 const App = () => {
   const audioEl = useRef(null);
@@ -12,34 +18,24 @@ const App = () => {
   const [countsToShow, setCounts] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
   const [gameOver, setGameOver] = useState(false);
-  const [level, setLevel] = useState("");
+  const [level, setLevel] = useState("hard");
   const [intervalId, setIntervalId] = useState(false);
   const [timeoutId, setTimeoutId] = useState(false);
 
   const startGame = () => {
-    const questionsToShow = getQuestions();
+    const questionsToShow = getQuestions(level);
     const answersToShow = getAnswers(questionsToShow);
     setQuestions(questionsToShow);
 
     let counts = 0;
-    const intervalSpeed = Math.floor(Math.random() * (6 - 3) + 3) * 100;
+    const intervalSpeed = getIntervalSpeed(level);
     const iId = setInterval(() => {
       audioEl.current.play();
       counts = counts + 1;
     }, intervalSpeed);
     setIntervalId(iId);
 
-    let time;
-    if (level === "hard") {
-      time = 1150;
-    } else if (level === "normal") {
-      time = 1250;
-    } else if (level === "easy") {
-      time = 1350;
-    } else {
-      time = 1150;
-    }
-    const secondsToPlay = questionsToShow.length * time;
+    const secondsToPlay = getSecondsToPlay(level, questionsToShow.length);
     const tId = setTimeout(() => {
       clearInterval(iId);
 
@@ -57,6 +53,10 @@ const App = () => {
       <audio ref={audioEl}>
         <source src={sound}></source>
       </audio>
+
+      <p className="announcement">
+        * For division questions, Round your answer to the nearest integer *
+      </p>
 
       {questions.length <= 0 && !gameOver && (
         <select onChange={(e) => setLevel(e.target.value)}>
