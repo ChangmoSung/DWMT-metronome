@@ -2,28 +2,26 @@ export const getQuestions = (level) => {
   const questionsToShow = [];
   const numOfQuestions = Math.floor(Math.random() * (8 - 3) + 3) * 10;
   for (let i = 0; i < numOfQuestions; i++) {
-    const num1 = Math.floor(Math.random() * (30 - 1) + 1);
-    const num2 = Math.floor(Math.random() * (30 - 1) + 1);
+    const num1 = Math.floor(Math.random() * (50 - 1) + 1);
+    const num2 = Math.floor(Math.random() * (50 - 1) + 1);
     const biggerNum = Math.max(num1, num2);
     const smallerNum = Math.min(num1, num2);
     const chance = Math.random();
     let question = "";
-    if (level === "hard") {
-      if (chance < 0.25) {
+    if (level === "hard" || level === "defaultHard") {
+      if (chance <= 0.33) {
         question = `${num1} + ${num2}`;
-      } else if (chance < 0.5) {
+      } else if (chance <= 0.66 && chance > 0.33) {
         question = `${biggerNum} - ${smallerNum}`;
-      } else if (chance < 0.75) {
-        question = `${biggerNum} / ${smallerNum}`;
-      } else if (chance < 1) {
+      } else if (chance < 1 && chance > 0.66) {
         question = `${num1} * ${num2}`;
       } else {
         question = `${num1} * ${num2}`;
       }
     } else {
-      if (chance < 0.5) {
+      if (chance <= 0.5) {
         question = `${num1} + ${num2}`;
-      } else if (chance < 1) {
+      } else if (chance < 1 && chance > 0.5) {
         question = `${biggerNum} - ${smallerNum}`;
       } else {
         question = `${biggerNum} - ${smallerNum}`;
@@ -42,9 +40,6 @@ export const getAnswers = (questionsToShow) => {
     } else if (q.includes("-")) {
       const [num1, num2] = q.split(" - ");
       return parseInt(num1, 10) - parseInt(num2, 10);
-    } else if (q.includes("/")) {
-      const [num1, num2] = q.split(" / ");
-      return Math.round(parseInt(num1, 10) / parseInt(num2, 10));
     } else if (q.includes("*")) {
       const [num1, num2] = q.split(" * ");
       return parseInt(num1, 10) * parseInt(num2, 10);
@@ -56,7 +51,7 @@ export const getAnswers = (questionsToShow) => {
 export const getIntervalSpeed = (level) => {
   const randomChance = Math.random();
   let intervalSpeed = 0;
-  if (level === "hard") {
+  if (level === "hard" || level === "defaultHard") {
     if (randomChance <= 0.2) {
       intervalSpeed = 400;
     } else if (randomChance <= 0.4 && randomChance > 0.2) {
@@ -122,7 +117,7 @@ export const replayGame = ({
   setAnswers([]);
   setUserAnswers([]);
   setGameOver(false);
-  setLevel("hard");
+  setLevel("defaultHard");
   clearInterval(intervalId);
   clearTimeout(timeoutId);
 };

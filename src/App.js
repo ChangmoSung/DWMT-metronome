@@ -18,7 +18,7 @@ const App = () => {
   const [countsToShow, setCounts] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
   const [gameOver, setGameOver] = useState(false);
-  const [level, setLevel] = useState("hard");
+  const [level, setLevel] = useState("defaultHard");
   const [intervalId, setIntervalId] = useState(false);
   const [timeoutId, setTimeoutId] = useState(false);
 
