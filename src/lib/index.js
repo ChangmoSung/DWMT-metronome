@@ -92,7 +92,7 @@ export const getSecondsToPlay = (level, numOfQuestions) => {
   if (level === "hard") {
     time = 3000;
   } else if (level === "normal") {
-    time = 1700;
+    time = 2000;
   } else if (level === "easy") {
     time = 2500;
   } else {
